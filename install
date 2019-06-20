@@ -1,0 +1,15 @@
+#!/bin/sh
+
+path=$(dirname $(realpath "$0"))
+
+mkdir -p $HOME/bin
+
+for i in dmenu/*; do
+	[ -x $i ] && ln -svf "$path/$i" "$HOME/bin"
+done
+
+
+for i in misc/*; do
+	[ -x $i ] && ln -svf "$path/$i" "$HOME/bin"
+done
+
