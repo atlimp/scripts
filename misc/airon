@@ -1,0 +1,5 @@
+#!/bin/bash
+
+killall blueman-applet
+sudo service bluetooth stop
+sudo service NetworkManager stop

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo sed -i 's/^/#/g' /etc/NetworkManager/NetworkManager.conf
+sudo systemctl restart NetworkManager.service

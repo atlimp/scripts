@@ -1,0 +1,20 @@
+#!/bin/bash
+
+dev=$(lsblk -l -o NAME,SIZE,MOUNTPOINT | grep -E 'sd.[[:digit:]]' | awk '($3 != "/" && $3 != "/home") && $3 != "" {print $3" "$2}')
+[ "$dev" == "" ] && exit 1
+
+selected=$(echo "$dev" | dmenu -p "Select device" | cut -d ' ' -f 1)
+	
+[ "$selected" == "" ] && exit 1
+
+error=$(mktemp)
+sudo umount "$selected" 2> ${error}
+sudo rmdir "$selected" 2> ${error}
+
+if [ -s ${error} ]; then
+	notify-send -t 3000 "Error" "$(cat $error)"
+else
+	notify-send -t 3000 "Success" "Successfully unmounted $selected"
+fi
+
+rm ${error}

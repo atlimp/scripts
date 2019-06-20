@@ -1,0 +1,14 @@
+#!/bin/bash
+
+d=$(date +"%d-%m-%Y %H:%M")
+
+results=$(speedtest-cli | grep -E '^Download|^Upload')
+
+if [ "$results" == "" ]; then
+	notify-send "SpeedTest:" "Could not connect to server"
+	exit 1
+fi
+
+echo -e "SpeedTest results: $d\n$results" > /home/atli/.scripts/misc/speedtest-results.txt
+
+notify-send "SpeedTest Results:" "$results"

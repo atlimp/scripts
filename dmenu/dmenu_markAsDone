@@ -1,0 +1,7 @@
+#!/bin/bash
+todo=$(cat $HOME/.todo.txt | sort -d '-' -k3n -k2n -k1n | dmenu -l 5 -p "Mark todo as done: ")
+
+[ "$todo" == "" ] && exit 1
+
+# Remove from todo file
+sed -i "/$todo/d" $HOME/.todo.txt

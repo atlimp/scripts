@@ -1,0 +1,27 @@
+#!/bin/bash
+
+dev=$(lsblk -l -o NAME,SIZE,MOUNTPOINT | grep 'sd.[[:digit:]]' | awk '$3 == "" {print "/dev/"$1" "$2}') 
+[ "$dev" == "" ] && exit 1
+
+selected=$(echo "$dev" | dmenu -p "Select device" | cut -d ' ' -f 1)
+	
+[ "$selected" == "" ] && exit 1
+
+mountpoint=$(echo -e "/mnt\n/media/atli" | dmenu -p "Select mountpoint")
+[ "$mountpoint" == "" ] && exit 1
+
+name=$(echo -n "" | dmenu)
+		
+[ "$name" == "" ] && exit 1
+
+sudo mkdir -p "$mountpoint/$name"
+error=$(mktemp)
+sudo mount "$selected" "$mountpoint/$name" 2> ${error}
+			
+if [ -s ${error} ]; then
+	notify-send -t 3000 "Error" "$(cat $error)"
+else
+	notify-send -t 3000 "Success" "Successfully mounted $mountpoint/$name"
+fi
+
+rm ${error}

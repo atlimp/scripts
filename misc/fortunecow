@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cow=$(/usr/games/cowsay -l | tail -n+2 | tr ' ' '\n' | shuf -n1)
+
+pref="/usr/share/games/fortunes/off/"
+
+/usr/games/fortune -os -e "$pref"privates "$pref"black-humor "$pref"racism "$pref"hphobia "$pref"sex | /usr/games/cowsay -f "$cow" > $HOME/.scripts/misc/fortunecow.txt

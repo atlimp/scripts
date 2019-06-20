@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo service bluetooth start 
+sudo service NetworkManager start
+blueman-applet > /dev/null &
+disown

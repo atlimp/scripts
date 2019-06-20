@@ -1,0 +1,8 @@
+#!/bin/bash
+
+todo=$(echo -n "" | dmenu -p "Enter todo: ")
+[ "$todo" == "" ] && exit 1
+
+# Check for specified date
+[ "$(echo "$todo" | grep -E -o '[[:digit:]]{2}-[[:digit:]]{2}-[[:digit:]]{4}')" == "" ] && todo="$(date -u +"%d-%m-%Y") $todo" 
+echo "$todo" >> $HOME/.todo.txt

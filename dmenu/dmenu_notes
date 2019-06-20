@@ -1,0 +1,6 @@
+#!/bin/bash
+note=$(echo -n "" | dmenu -p "New note: ")
+
+[ "$note" == "" ] && exit 1
+
+echo "$note" >> $HOME/.notes.txt

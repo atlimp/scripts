@@ -1,0 +1,7 @@
+#!/bin/bash
+
+term=$(echo -n "" | dmenu -p "Enter search term: ")
+
+[ "$term" == "" ] && exit 1
+
+x-www-browser "https://duckduckgo.com/?q=$term&t=h_&ia=web"

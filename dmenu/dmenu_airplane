@@ -1,0 +1,14 @@
+#!/bin/bash
+
+which=$(echo -e "On\nOff" | dmenu -p "Airplane Mode: ")
+
+[ "$which" == "" ] && exit
+
+case $which in
+		"On") 
+			airon
+			notify-send "Airplane Mode" "Turned on" ;;
+		"Off")
+			airoff
+		   	notify-send "Airplane Mode" "Turned off" ;;
+esac
