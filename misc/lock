@@ -1,7 +1,7 @@
 #!/bin/bash
 
-scrot $HOME/.desk.png
+scrot /tmp/back.png 
 
-convert $HOME/.desk.png -blur 0x8 $HOME/.desk.png
+convert /tmp/back.png -blur 0x8 /tmp/back.png
 
-i3lock -ef -i $HOME/.desk.png
+i3lock -ef -i /tmp/back.png
