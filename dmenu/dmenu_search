@@ -1,7 +1,11 @@
 #!/bin/bash
 
-term=$(echo -n "" | dmenu -p "Enter search term: ")
+hist=$(cat /tmp/hist)
+
+term=$(echo -n "$hist" | dmenu -l 10 -p "Enter search term: ")
 
 [ "$term" == "" ] && exit 1
+
+echo "$term" >> /tmp/hist
 
 x-www-browser "https://duckduckgo.com/?q=$term&t=h_&ia=web"
