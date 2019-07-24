@@ -1,9 +1,16 @@
 #!/bin/bash
 
 [[ "$(pgrep i3lock)" != "" ]] && exit
+if [ "$1" != "" ]; then
+  	delay=$1
+
+	notify-send -t 1000 -i "$HOME/scripts/misc/lock.png" "Locking..." "Locking in $delay s"
+	sleep $delay
+fi
 
 scrot /tmp/back.png 
 
 convert /tmp/back.png -blur 0x8 /tmp/back.png
+
 
 i3lock -ef -i /tmp/back.png
