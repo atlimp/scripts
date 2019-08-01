@@ -4,7 +4,7 @@ selected=$(echo -e "Lock\nLogout\nShutdown\nRestart\nHibernate\nSuspend" | dmenu
 case $selected in
 	"Lock") dmenu_select "$selected" "/home/atli/bin/lock" ;;
 	"Logout") dmenu_select "$selected" "openbox --exit" ;;
-	"Shutdown") dmenu_select "$selected" "sudo shutdown now" ;;
+	"Shutdown") dmenu_select "$selected" "sudo shutdown -h now" ;;
 	"Restart") dmenu_select "$selected" "sudo reboot" ;;
 	"Hibernate") dmenu_select "$selected" "sudo systemctl hibernate" ;;
 	"Suspend") dmenu_select "$selected" "sudo systemctl suspend" ;;
