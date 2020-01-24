@@ -1,6 +1,6 @@
 #!/bin/bash
 
-d=$(date +"%d-%m-%Y %H:%M")
+d=$(date +"%F %H:%M")
 
 results=$(speedtest-cli | grep -E '^Download|^Upload')
 

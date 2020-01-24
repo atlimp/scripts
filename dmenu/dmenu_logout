@@ -1,11 +1,12 @@
 #!/bin/bash
-selected=$(echo -e "Lock\nLogout\nShutdown\nRestart\nHibernate\nSuspend" | dmenu -l 6)
+selected=$(echo -e "Lock\nLogout\nSuspend\nHibernate\nSuspend then hibernate\nRestart\nShutdown" | dmenu -l 7)
 
 case $selected in
-	"Lock") dmenu_select "$selected" "/home/atli/bin/lock" ;;
+	"Lock") dmenu_select "$selected" "/home/atli/bin/lock 3" ;;
 	"Logout") dmenu_select "$selected" "openbox --exit" ;;
-	"Shutdown") dmenu_select "$selected" "sudo shutdown -h now" ;;
-	"Restart") dmenu_select "$selected" "sudo reboot" ;;
-	"Hibernate") dmenu_select "$selected" "sudo systemctl hibernate" ;;
 	"Suspend") dmenu_select "$selected" "sudo systemctl suspend" ;;
+	"Hibernate") dmenu_select "$selected" "sudo systemctl hibernate" ;;
+	"Suspend then hibernate") dmenu_select "$selected" "sudo systemctl suspend-then-hibernate" ;;
+	"Restart") dmenu_select "$selected" "sudo reboot" ;;
+	"Shutdown") dmenu_select "$selected" "sudo shutdown -h now" ;;
 esac	
