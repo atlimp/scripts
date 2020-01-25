@@ -1,5 +1,5 @@
 #!/bin/bash
-selected=$(echo -e "Lock\nLogout\nSuspend\nHibernate\nSuspend then hibernate\nRestart\nShutdown" | dmenu -l 7)
+selected=$(echo -e "Lock\nLogout\nSuspend\nHibernate\nSuspend then hibernate\nRestart\nShutdown" | dmenu -i -l 7)
 
 case $selected in
 	"Lock") dmenu_select "$selected" "/home/atli/bin/lock 3" ;;
