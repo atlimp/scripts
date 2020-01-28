@@ -1,0 +1,11 @@
+#!/bin/bash
+
+dates=$(mktemp)
+todos="$HOME/.todo.txt"
+
+for i in {-3..3}; do
+	date -u +"%d-%m-%Y" -d "$i day" >> "$dates"
+done
+
+awk 'NR==FNR {a[$1]; next} $1 in a {print $0}' "$dates" "$todos" | sort -t- -nk3 -nk2 -nk1
+

@@ -5,7 +5,7 @@ if [ "$1" != "" ]; then
   	delay=$1
 
 	notify-send -t 1000 -i "$HOME/scripts/misc/lock.png" "Locking..." "Locking in $delay s"
-	sleep $delay
+	sleep "$delay"
 fi
 
 scrot /tmp/back.png 

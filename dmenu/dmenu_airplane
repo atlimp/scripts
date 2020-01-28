@@ -1,6 +1,6 @@
 #!/bin/bash
 
-which=$(echo -e "On\nOff" | dmenu -p "Airplane Mode: ")
+which=$(echo -e "On\\nOff" | dmenu -p "Airplane Mode: ")
 
 [ "$which" == "" ] && exit
 

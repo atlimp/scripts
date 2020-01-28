@@ -1,8 +1,15 @@
 #!/bin/bash
 
 todo=$(echo -n "" | dmenu -p "Enter todo: ")
-[ "$todo" == "" ] && exit 1
+[[ "$todo" == "" ]] && exit 1
 
 # Check for specified date
-[ "$(echo "$todo" | grep -E -o '[[:digit:]]{2}-[[:digit:]]{2}-[[:digit:]]{4}')" == "" ] && todo="$(date -u +"%d-%m-%Y") $todo" 
-echo "$todo" >> $HOME/.todo.txt
+if [[ "$(echo "$todo" | grep -E -o '[[:digit:]]{2}-[[:digit:]]{2}-[[:digit:]]{4}')" == "" ]]; then
+		dates=$(date -u +"%d-%m-%Y")
+		for i in {1..6}; do
+			dates="$dates\\n$(date -u +"%d-%m-%Y" -d "$i day")";
+		done
+		todo="$(echo -e "$dates" | dmenu -l 7 -p "When? ") $todo"
+fi
+
+echo "$todo" >> "$HOME/.todo.txt"

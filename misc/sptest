@@ -9,6 +9,6 @@ if [ "$results" == "" ]; then
 	exit 1
 fi
 
-echo -e "SpeedTest results: $d\n$results" > /tmp/speedtest-results.txt 
+echo -e "SpeedTest results: $d\\n$results" > /tmp/speedtest-results.txt 
 
 notify-send "SpeedTest Results:" "$results"

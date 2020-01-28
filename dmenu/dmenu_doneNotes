@@ -1,6 +1,6 @@
 #!/bin/bash
-note=$(cat $HOME/.notes.txt | dmenu -l 5 -p "Remove note: ")
+note=$(cat "$HOME/.notes.txt" | dmenu -l 5 -p "Remove note: ")
 
 [ "$note" == "" ] && exit 1
 
-sed -i "/$note/d" $HOME/.notes.txt
+sed -i "/$note/d" "$HOME/.notes.txt"

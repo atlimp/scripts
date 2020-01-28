@@ -7,7 +7,7 @@ selected=$(echo "$dev" | dmenu -p "Select device" | cut -d ' ' -f 1)
 	
 [ "$selected" == "" ] && exit 1
 
-mountpoint=$(echo -e "/mnt\n/media/atli" | dmenu -p "Select mountpoint")
+mountpoint=$(echo -e "/mnt\\n/media/atli" | dmenu -p "Select mountpoint")
 [ "$mountpoint" == "" ] && exit 1
 
 name=$(echo -n "" | dmenu)
@@ -16,12 +16,12 @@ name=$(echo -n "" | dmenu)
 
 sudo mkdir -p "$mountpoint/$name"
 error=$(mktemp)
-sudo mount "$selected" "$mountpoint/$name" 2> ${error}
+sudo mount "$selected" "$mountpoint/$name" 2> "$error"
 			
-if [ -s ${error} ]; then
-	notify-send -t 3000 "Error" "$(cat $error)"
+if [ -s "$error" ]; then
+	notify-send -t 3000 "Error" "$(cat "$error")"
 else
 	notify-send -t 3000 "Success" "Successfully mounted $mountpoint/$name"
 fi
 
-rm ${error}
+rm "$error"
