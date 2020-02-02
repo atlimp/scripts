@@ -1,0 +1,36 @@
+#!/bin/bash
+
+file="$(date -u +"%b").csv"
+
+if [ ! -d "$HOME/.expenses" ]; then
+		mkdir -p "$HOME/.expenses"
+fi
+
+if [ ! -f "$HOME/.expenses/$file" ]; then
+		echo "date;amt;descr" > "$HOME/.expenses/$file"
+fi
+
+echo -e "New expense...\\n"
+
+echo -n "When? [$(date -u +"%d-%m-%Y")] "
+read -r when
+
+if [[ "$when" == "" ]]; then
+		when=$(date -u +"%d-%m-%Y")
+fi
+
+amt=""
+i=0
+while [[ $(echo $amt | grep -E '^[0-9]+$') == "" ]]; do
+	
+	echo -n "How much? "
+	read -r amt
+	i=$(( i + 1 ))
+
+	[ $i -ge 5 ] && exit 1
+done
+
+echo -n "What? "
+read -r what
+
+echo "$when;$amt;$what" >> "$HOME/.expenses/$file"
