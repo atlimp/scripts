@@ -1,5 +1,5 @@
 #!/bin/bash
-todo=$(sort -d '-' -k3n -k2n -k1n "$HOME/.todo.txt" | dmenu -l 5 -p "Mark todo as done: ")
+todo=$(sort -t- -k3n -k2n -k1n "$HOME/.todo.txt" | dmenu -l 5 -p "Mark todo as done: ")
 
 [ "$todo" == "" ] && exit 1
 
