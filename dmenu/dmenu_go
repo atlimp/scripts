@@ -1,0 +1,10 @@
+#!/bin/bash
+
+histfile="/tmp/go_hist"
+
+sites=""
+[ -f "$histfile" ] && sites="$(tac "$histfile" | uniq)"
+
+url=$(echo -n "$sites" | dmenu -l 5 -p "Go: ")
+
+[[ "$url" != "" ]] && echo "$url" >> "$histfile" && x-www-browser "$url"

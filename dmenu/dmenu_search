@@ -1,11 +1,12 @@
 #!/bin/bash
 
-hist=$(tac /tmp/hist)
+histfile="/tmp/search_hist"
+hist=$(tac "$histfile" | uniq)
 
 term=$(echo -n "$hist" | dmenu -l 10 -p "Enter search term: ")
 
 [ "$term" == "" ] && exit 1
 
-echo "$term" >> /tmp/hist
+echo "$term" >> "$histfile"
 
 x-www-browser "https://duckduckgo.com/?q=$term&t=h_&ia=web"
