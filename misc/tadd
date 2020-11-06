@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while [ "$1" ]; do
+	transmission-remote -a "$1" && notify-send -t 1000 "Transmission: " "Added torrent $1" || notify-send -t 1000 "Transmission: " "Failed to add torrent $1"
+	shift
+done
